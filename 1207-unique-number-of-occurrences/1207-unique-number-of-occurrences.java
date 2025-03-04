@@ -1,11 +1,17 @@
 class Solution {
     public boolean uniqueOccurrences(int[] arr) {
-        HashMap<Integer,Integer> mp = new HashMap<>();
-        for(int i:arr)
-        mp.put(i,mp.getOrDefault(i,0)+1);
-        HashSet<Integer> set = new HashSet<>(mp.values());
-        if(mp.size()==set.size())
+        int[] nums=new int[2001];
+        for(int i=0;i<arr.length;i++)
+        {
+            nums[arr[i]+1000]++;
+        }
+        Arrays.sort(nums);
+        for(int i=0;i<2000;i++)
+        {
+            if(nums[i]!=0 && nums[i]==nums[i+1]){
+                return false;
+            }
+        }
         return true;
-        return false;
     }
 }
